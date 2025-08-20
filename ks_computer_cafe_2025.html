@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KS Computer Cafe - Govt/Private Jobs Information</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-red: #3242d4;
+            --primary-blue: #c46f20;
+            --primary-green: #4CAF50;
+            --primary-orange: #FF5722;
+            --primary-dark: #2F2D2E;
+            --primary-light: #F8F7F9;
+            --accent-yellow: #FFCC29;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-red) 0%, #c41e1e 100%);
+            color: white;
+            padding: 15px 40px;
+            position: relative;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 60px;
+            width: 60px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .logo-text h1 {
+            font-size: 2.8rem;
+            margin: 0;
+            color: white;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            text-align: right;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+            font-size: 1.0 rem;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: var(--primary-dark);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            color: rgb(231, 228, 9);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(206, 32, 32, 0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 20px;
+        }
+
+        .section-title {
+            color: rgb(209, 10, 10));
+            font-size: 1.5rem;
+            margin: 20px 0 2px;
+            padding-bottom: 5px;
+            border-bottom: 9px rgb(255, 0, 0) var(--accent-yellow);
+            display: inline-block;
+        }
+        
+
+        /* Job Cards */
+        .job-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(900px, 1fr));
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .job-card {
+            background: rgb(255, 255, 255);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--primary-red);
+            transition: all 0.3s;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .job-title {
+            color: var(--primary-red);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .job-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .apply-btn {
+            background: #2E86AB;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+
+        .apply-btn:hover {
+            background: #8f351a;
+        }
+
+
+        /* Job Details Container */
+        .job-details-container {
+            display: none;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .job-details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .job-details-table th,
+        .job-details-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .job-details-table th {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        .close-details {
+            float: right;
+            cursor: pointer;
+            color: var(--primary-red);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Tables */
+        .job-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .job-table th,
+        .job-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .job-table th {
+            background-color: var(--primary-red);
+            color: white;
+        }
+
+        .job-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .job-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .apply-now {
+            color: white;
+            background: var(--primary-green);
+            padding: 5px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* Lists */
+        .result-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .admit-list,
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .result-list li {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .admit-list li,
+        .answer-list li {
+            padding: 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .admit-list li a,
+        .answer-list li a {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            text-decoration: none;
+            color: inherit;
+            padding: 12px 15px;
+            transition: all 0.3s;
+        }
+
+        .result-list li:hover,
+        .admit-list li:hover,
+        .answer-list li:hover {
+            background-color: #f9f9f9;
+            transform: translateX(5px);
+        }
+
+        .result-date {
+            background: var(--primary-blue);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .admit-date {
+            background: var(--primary-blue);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .answer-date {
+            background: var(--primary-orange);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* Section Highlights */
+        #admit-card-section,
+        #exam-result-section,
+        #answer-keys-section {
+            scroll-margin-top: 80px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--accent-yellow);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Tool Links */
+        .tool-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .links-table a {
+            background: #2E86AB;
+            color: white !important;
+            padding: 6px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-block;
+            text-align: center;
+            margin: 2px 0;
+        }
+
+        .links-table a:hover {
+            background: #1a6a8f;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .contact-info {
+                text-align: center;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+            }
+
+            .nav-links li {
+                margin: 5px 10px;
+            }
+
+            .job-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .tool-links {
+                justify-content: center;
+            }
+
+            #admit-card-section,
+            #exam-result-section,
+            #answer-keys-section {
+                scroll-margin-top: 120px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-top">
+                <div class="logo">
+                    <img src="https://mmg.whatsapp.net/m1/v/t24/An9ckm7MhxyD3Fy2qt19Y3lacjrCxPQHXvq_9Dk843gzPFYOWluJVV3K2zqsFi5JNIGALrRbGfYJiKt3WpHga-2wtqoqXcC6dQ_I-R9GREikymBY62O-mrSZoj-vUAUZ1LPQwOpbu-99rbGpY-ws?_nc_gid=C0Dw-f-RJpVctcUdPFTZrA&_nc_oc=AdkiQt_KtrGVmx9WwPMn-xq64Yqb7Pl5JmQl22m077avwxJPJceRZBkjCszt92PyxOw&ccb=10-5&oh=01_Q5Aa2AF955b39UKyYJJT5LV0xw9BFjZOLao8SxlihMHQUnRNbg&oe=68A14856&_nc_sid=471a72"
+                        alt="KS Computer Cafe Logo">
+                    <div class="logo-text">
+                        <h1>KS Computer Cafe</h1>
+                        <p>High! Here: 🍀 Govt./Private Jobs Info. (Online/Offline)</p>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <p><i class="fas fa-phone-alt"></i> <a href="tel:+919814112075">+91 98141-12075</a></p>
+                    <p><i class="fas fa-envelope"></i> <a
+                            href="mailto:karancomputer333@gmail.com">karancomputer333@gmail.com</a></p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#admit-card-section"><i class="fas fa-id-card"></i> Admit Card</a></li>
+                <li><a href="#hot-jobs-section"><i class="fas fa-briefcase"></i> Hot Job</a></li>
+                <li><a href="#exam-result-section"><i class="fas fa-poll"></i> Exam Result</a></li>
+                <li><a href="#answer-keys-section"><i class="fas fa-key"></i> Answer Keys</a></li>
+                <li><a href="#online-forms-section"><i class="fas fa-file-alt"></i> Top Online Form</a></li>
+
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h2 class="section-title">Tech. Tools</h2>
+            <div class="tool-links">
+                <a href="https://image.pi7.org/resize-image-to-20kb" class="tool-link" target="_blank">Image Resizer</a>
+                <a href="https://www.ilovepdf.com/jpg_to_pdf" class="tool-link" target="_blank">JPG to PDF</a>
+                <a href="https://zety.com/lp/cv-maker-in" class="tool-link" target="_blank">CV Maker</a>
+                <a href="https://www.calculator.net/age-calculator.html" class="tool-link" target="_blank">Age
+                    Calculator</a>
+                <a href="https://image.pi7.org/add-name-and-date-on-photo" class="tool-link" target="_blank">Name & Date
+                    on Photo</a>
+                <a href="https://bigpdf.11zon.com/en/compress-pdf/compress-pdf-to-100kb.php" class="tool-link"
+                    target="_blank">PDF Size Compress</a>
+                <a href="https://www.ilovepdf.com/pdf_to_jpg" class="tool-link" target="_blank">PDF to JPG</a>
+            </div>
+
+            <hr style="border: 4px dashed #f51313; margin: 0px 0;">
+
+            <h2 class="section-title" id="hot-jobs-section">Latest Jobs</h2>
+            <div class="job-cards">
+                <div class="job-card">
+                    <h3 class="job-title"> Intelligence Bureau (IB) Security Assistan/Executive Recruitment 2025</h3>
+                    <div class="job-meta">
+                        <span><i class="far fa-calendar-alt"></i> Last Date: 17-08-2025</span>
+                        <span><i class="fas fa-users"></i> 4987 Posts</span>
+                    </div>
+                    <a href="#" class="apply-btn" onclick="showJobDetails('ib-details', event)">Get Details</a>
+
+                    <div id="ib-details" class="job-details-container">
+                        <span class="close-details" onclick="hideJobDetails('ib-details')">×</span>
+                        <h3>Intelligence Bureau (IB) Security Assistan/Executive Recruitment 2025</h3>
+
+                        <table class="job-details-table">
+                            <tr>
+                                <th>Post Name</th>
+                                <td>Security Assistant/Executive</td>
+                            </tr>
+                            <tr>
+                                <th>Total Posts</th>
+                                <td>4987</td>
+                            </tr>
+                            <tr>
+                                <th>Qualification</th>
+                                <td>10th from Recognized University/Board</td>
+                            </tr>
+                            <tr>
+                                <th>Age Limit</th>
+                                <td>
+                                    <ul style="margin: 0; padding-left: 20px;">
+                                        <li>General: 18-27 Years</li>
+                                        <li>BC: 18-30 Years</li>
+                                        <li>SC: 18-32 Years</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Application Fee</th>
+                                <td>
+                                    <ul style="margin: 0; padding-left: 20px;">
+                                        <li>Gen/OBC/EWS: ₹650/-</li>
+                                        <li>SC/All Females: ₹550/-</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Salary</th>
+                                <td>RS- 21700/- to Rs 69100/- </td>
+                            </tr>
+                            <tr>
+                                <th>Last Dates</th>
+                                <td>
+                                    <ul style="margin: 0; padding-left: 20px;">
+                                        <li> 17-08-2025</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <h4>Important Related Links</h4>
+                        <table class="job-details-table">
+                            <tr>
+                                <th>Content Type</th>
+                                <th>Content Link</th>
+                            </tr>
+                            <tr>
+                                <td>Apply Online Form</td>
+
+                                <td><a href="https://cdn.digialm.com/EForms/configuredHtml/1258/94478/Index.html"
+                                        target="_blank">Click Here</a></td>
+                            </tr>
+                            <tr>
+                                <td>Full Notification</td>
+
+                                <td><a href="https://g03.tcsion.com//per/g03/pub/726/EForms/image/ImageDocUpload/71161/1/3701937897.pdf"
+                                        target="_blank">Click Here</a></td>
+                            </tr>
+                            <tr>
+
+                                <td>Official Website</td>
+
+                                <td><a href="" target="_blank">Click Here</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="job-card">
+                    <h3 class="job-title"> PSSSB Punjab- Assisant Superintendent/ Warder/ Matron Recruitment 2025</h3>
+                    <div class="job-meta">
+                        <span><i class="far fa-calendar-alt"></i> Last Date: 24-08-2025</span>
+                        <span><i class="fas fa-users"></i> 471 Posts</span>
+                    </div>
+                    <a href="#" class="apply-btn" onclick="showJobDetails('warder-details', event)">Get Details</a>
+
+                    <div id="warder-details" class="job-details-container">
+                        <span class="close-details" onclick="hideJobDetails('warder-details')">×</span>
+                        <h3>PSSSB Punjab Jail Warder Recruitment 2025</h3>
+
+                        <table class="job-details-table">
+                            <tr>
+                                <th>Post Name</th>
+                                <td>Jail Warder- 451</td>
+                                <td>Assisant Superintendent- 29</td>
+                                <td>Matron- 20</td>
+                            </tr>
+                            <tr>
+                                <th>Total Posts</th>
+                                <td>471</td>
+                            </tr>
+                            <tr>
+                                <th>Qualification</th>
+                                <td>Matron/Warder- 12th Pass with Punjabi Subject</td>
+                                <td>Assisant Superintendent- Any Degree with Punjabi Subject</td>
+                            </tr>
+                            <tr>
+                                <th>Age Limit</th>
+                                <td> Gen. 21-27 Years</td>
+                                <td> SC/BC. 21-32 Years</td>
+                            </tr>
+                            <tr>
+                                <th>Application Fee</th>
+                                <td>₹250/- for SC/BC/EWS Categories</td>
+                                <td>₹1000/- for Gen/Sports/Freedom Fighter Categories</td>
+
+                            </tr>
+                            <tr>
+                                <th>Selection Process</th>
+                                <td> Written Exam →Physical Test→ Medical Examination</td>
+                            </tr>
+                            <tr>
+                                <th>Last Dates</th>
+                                <td>
+                                    <ul style="margin: 0; padding-left: 20px;">
+                                        <li>24-08-2025</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <h4>Important Related Links</h4>
+                        <table class="job-details-table">
+                            <tr>
+                                <th>Content Type</th>
+                                <th>Content Link</th>
+                            </tr>
+                            <tr>
+                                <td>Apply Online Form</td>
+                                <td><a href="http://97.74.80.25:8081/2507postapplied.jsp" target="_blank">Click Here</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Full Notification</td>
+
+                                <td><a href="https://sssb.punjab.gov.in/Downloads/2024/Advt.%20No.%2007%20of%202025.pdf"
+                                        target="_blank">Click Here</a></td>
+                            </tr>
+                            <tr>
+                                <td>Official Website</td>
+
+                                <td><a href="https://sssb.punjab.gov.in/index.html" target="_blank">Click Here</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="job-card">
+                    <h3 class="job-title">BSF CONSTABLE TRADESMAN 2025</h3>
+                    <div class="job-meta">
+                        <span><i class="far fa-calendar-alt"></i> Last Date: 24-08-2025</span>
+                        <span><i class="fas fa-users"></i> 3588 Posts</span>
+                    </div>
+                    <a href="#" class="apply-btn" onclick="showJobDetails('railway-details', event)">Get Details</a>
+
+                    <div id="railway-details" class="job-details-container">
+                        <span class="close-details" onclick="hideJobDetails('railway-details')">×</span>
+                        <h3>BSF CONSTABLE TRADESMAN 2025</h3>
+
+                        <table class="job-details-table">
+                            <tr>
+                                <th>Post Name</th>
+                                <td> CONSTABLE TRADESMAN </td>
+                            </tr>
+                            <tr>
+                                <th>Total Posts</th>
+                                <td>3588</td>
+                            </tr>
+                            <tr>
+                                <th>Qualification</th>
+                                <td> 10th/ ITI in Relevant Trade</td>
+                            </tr>
+                            <tr>
+                                <th>Age Limit</th>
+                                <td>18-25 Year age relaxation s</td>
+                            </tr>
+                            <tr>
+                                <th>Application Fee</th>
+                                <td>₹100/- for Gen/OBC/EWS Categories</td>
+                                <td>₹0/- for SC/Female Categories</td>
+
+                            </tr>
+                            <tr>
+                                <th>Selection Process</th>
+                                <td>Written Exam → Document Verification</td>
+                            </tr>
+                            <tr>
+                                <th>Important Dates</th>
+                                <td>
+                                    <ul style="margin: 0; padding-left: 20px;">
+                                        <li>Last Date: 24-08 2025</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <h4>Important Related Links</h4>
+                        <table class="job-details-table">
+                            <tr>
+                                <th>Content Type</th>
+
+                                <th>Content Link</th>
+                            </tr>
+                            <tr>
+                                <td>Apply Online Form</td>
+
+                                <td><a href="https://rectt.bsf.gov.in/" target="_blank">Click Here</a></td>
+                            </tr>
+                            <tr>
+                                <td>Full Notification</td>
+
+                                <td><a href="https://rectt.bsf.gov.in/static/bsf/pdf/08306a4a-65f0-11f0-9075-0ac9bff458eb.pdf?rel=2025072502"
+                                        target="_blank">Click Here</a></td>
+                            </tr>
+                            <tr>
+
+
+                                <td>Official Website</td>
+
+                                <td><a href="https://rectt.bsf.gov.in/" target="_blank">Click Here</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="job-card">
+                    <h3 class="job-title">JBT (Primary Teacher)</h3>
+                    <div class="job-meta">
+                        <span><i class="far fa-calendar-alt"></i> Last Date: Aug 28, 2025</span>
+                        <span><i class="fas fa-users"></i> 218 Posts</span>
+                    </div>
+                    <a href="#" class="apply-btn" onclick="showJobDetails('jbt-details', event)">Get Details</a>
+
+                    <div id="jbt-details" class="job-details-container">
+                        <span class="close-details" onclick="hideJobDetails('jbt-details')">×</span>
+                        <h3>JBT (Primary Teacher) Recruitment 2025</h3>
+
+                        <table class="job-details-table">
+                            <tr>
+                                <th>Post Name</th>
+                                <td>Primary Teacher (JBT)</td>
+                            </tr>
+                            <tr>
+                                <th>Total Posts</th>
+                                <td>218</td>
+                            </tr>
+                            <tr>
+                                <th>Qualification</th>
+                                <td>Graduate + 2-year D.El.Ed. + CTET Pass + 80-hour ICT (CCC) course</td>
+                            </tr>
+                            <tr>
+                                <th>Age Limit</th>
+                                <td>21-37 years (as on Jan 1, 2025)</td>
+                            </tr>
+                            <tr>
+                                <th>Application Fee</th>
+                                <td>
+                                    <ul style="margin: 0; padding-left: 20px;">
+                                        <li>Gen / OBC: ₹1000/-</li>
+                                        <li>SC / PwD: ₹500/-</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Selection Process</th>
+                                <td>Written Exam → Interview → Document Verification</td>
+                            </tr>
+                            <tr>
+                                <th>Important Dates</th>
+                                <td>
+                                    <ul style="margin: 0; padding-left: 20px;">
+                                        <li>Starting Date for Apply Online: 07-08-2025</li>
+                                        <li>Last Date: 28-08-2025</li>
+
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <h4>Important Related Links</h4>
+                        <table class="job-details-table">
+                            <tr>
+                                <th>Content Type</th>
+                                <th>Content Link</th>
+                            </tr>
+                            <tr>
+                                <td>Fill Online Form</td>
+                                <td><a href="#" target="_blank">Click Here</a></td>
+                            </tr>
+                            <tr>
+                                <td>Full Notification</td>
+
+                                <td><a href="https://ssachd.nic.in/sites/default/files/JBT%20Advertisment%202025.pdf"
+                                        target="_blank">Click Here</a></td>
+
+                            </tr>
+                            <tr>
+                                <td>Official Website</td>
+                                <td><a href="https://ssachd.nic.in/?q=recruitments" target="_blank">Click Here</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="job-card">
+                <h3 class="job-title">AIIMS NORCET 9 Nursing Officer Recruitment 2025</h3>
+                <div class="job-meta">
+                    <span><i class="far fa-calendar-alt"></i> Last Date: 11-08-2025</span>
+                    <span><i class="fas fa-users"></i> 3500 Posts</span>
+                </div>
+                <a href="#" class="apply-btn" onclick="showJobDetails('aiims-details', event)">Get Details</a>
+
+                <div id="aiims-details" class="job-details-container">
+                    <span class="close-details" onclick="hideJobDetails('aiims-details')">×</span>
+                    <h3>AIIMS NORCET 9 Nursing Officer Recruitment 2025</h3>
+
+                    <table class="job-details-table">
+                        <tr>
+                            <th>Post Name</th>
+                            <td>AIIMS Nursing Officer</td>
+                        </tr>
+                        <tr>
+                            <th>Total Posts</th>
+                            <td>3500</td>
+                        </tr>
+                        <tr>
+                            <th>Qualification</th>
+                            <td>B.Sc. (Hons.) Nursing / B.Sc. Nursing / Diploma in General Nursing Midwifery</td>
+                        </tr>
+                        <tr>
+                            <th>Age Limit</th>
+                            <td>21-30 years</td>
+                        </tr>
+                        <tr>
+                            <th>Application Fee</th>
+                            <td>
+                                <ul style="margin: 0; padding-left: 20px;">
+                                    <li>Gen / OBC: ₹3000/-</li>
+                                    <li>SC / PwD: ₹2400/-</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <th>Important Dates</th>
+                            <td>
+                                <ul style="margin: 0; padding-left: 20px;">
+                                    <li>Starting Date for Apply Online: 22-07-2025</li>
+                                    <li>Last Date: 11-08-2025</li>
+
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <h4>Important Related Links</h4>
+                    <table class="job-details-table">
+                        <tr>
+                            <th>Content Type</th>
+                            <th>Content Link</th>
+                        </tr>
+                        <tr>
+                            <td>Fill Online Form</td>
+                            <td><a href="https://rrpdocuments.aiimsexams.ac.in/1753290356861-982223591.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVRUVRLXWMSLVSAP7%2F20250731%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250731T140319Z&X-Amz-Expires=18000&X-Amz-Signature=3b3dca42a78df1f65340f61382f5a810955e41b4d1febbc5d0c15edb1824bb62&X-Amz-SignedHeaders=host&response-content-type=application%2Fpdf"
+                                    _blank">Click Here</a></td>
+                        </tr>
+                        <tr>
+                            <td>Full Notification</td>
+
+                            <td><a href="https://img2.freejobalert.com/news/2025/07/789654-68805c049724c2968436.pdf"
+                                    _blank">Click Here</a></td>
+
+                        </tr>
+                        <tr>
+                            <td>Official Website</td>
+                            <td><a href="https://rrp.aiimsexams.ac.in/" target="_blank">Click Here</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- मौजूदा जॉब लिस्ट के बाद -->
+        <div class="job-cards" id="autoPunjabJobs">
+            <!-- यहाँ ऑटो जॉब्स लोड होंगे -->
+        </div>
+
+        <script>
+            // Punjab Job Automation Script
+            document.addEventListener('DOMContentLoaded', function () {
+                fetchPunjabJobs();
+            });
+
+            async function fetchPunjabJobs() {
+                const container = document.getElementById('autoPunjabJobs');
+                container.innerHTML = '<p style="text-align:center">Loading Punjab jobs...</p>';
+
+                try {
+                    // यहाँ आपकी API कॉल होगी
+                    const jobs = await getPunjabJobsFromAPI();
+
+                    let html = '';
+                    jobs.forEach(job => {
+                        html += `
+            <div class="job-card">
+                <h3>${job.title}</h3>
+                <div class="job-meta">
+                    <span>Last Date: ${job.lastDate}</span>
+                    <span>${job.vacancies} Posts</span>
+                </div>
+                <a href="${job.link}" class="apply-btn">View Details</a>
+            </div>`;
+                    });
+
+                    container.innerHTML = html;
+                } catch (error) {
+                    container.innerHTML = `
+        <div class="job-card">
+            <p>Could not load jobs automatically. 
+            <a href="https://punjabjosbalert.com" target="_blank">Visit PunjabJobAlert</a></p>
+        </div>`;
+                }
+            }
+        </script>
+
+        <h2 class="section-title">Coming Soon Posts</h2>
+        <table class="job-table">
+            <thead>
+                <tr>
+                    <th>Post Name</th>
+                    <th>Apply Date</th>
+                    <th>Total Vacancies</th>
+                    <th>Qualification Details</th>
+                    <th>Official Website</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>JBT (Primary Teacher) Recruitment 2025</td>
+                    <td>07-08-2025</td>
+                    <td>218</td>
+                    <td>2 Year ETT Diploma + CTET</td>
+                    <td><a href="https://ssachd.nic.in/?q=recruitments" class="apply-now" target="_blank">Get
+                            Detials</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin: 40px 0;">
+            <div id="admit-card-section">
+                <h2 class="section-title">Admit Card</h2>
+                <ul class="admit-list">
+                    <li>
+                        <a href="https://ibpsonline.ibps.in/sbipomay25/oecla_jul25/login.php?appid=9c508fce04020431467ff7350926e4fc"
+                            target="_blank">
+                            SBI PO 2025 Prelims Admit Card
+                            <span class="admit-date">Download Now</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            SBI PO Pre Exam Date 2025
+                            <span class="admit-date">30 Jul 2025</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            Bihar BTSC Staff Nurse Exam Date 2025
+                            <span class="admit-date">1 Aug 2025</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            Join Territorial Army Officer Admit Card 2025
+                            <span class="admit-date">Out Now</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            Bihar Vidhan Sabha Junior Clerk 02/2024 Admit Card 2025
+                            <span class="admit-date">Out Now</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="exam-result-section">
+                <h2 class="section-title">Exam Result</h2>
+                <ul class="result-list">
+                    <li
+                        onclick="showResult('MPESB ADDET Exam Result 2025', 'MPESB ADDET Exam Results will be declared on 18th July 2025 on the official website.')">
+                        MPESB ADDET Exam Result 2025 <span class="result-date">18 Jul 2025</span>
+                    </li>
+                    <li
+                        onclick="showResult('NTA UGC NET June Result Date 2025', 'NTA UGC NET June 2025 results will be announced on 20th July 2025. Check official website for updates.')">
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="answer-keys-section">
+            <h2 class="section-title">Answer Keys</h2>
+            <ul class="answer-list">
+                <li>
+                    <a href="#" target="_blank"
+                        onclick="showAnswerKey('SBI PO 2025 Prelims Answer Key', 'The SBI PO 2025 Prelims Answer Key has been released. Candidates can raise objections till 25th July 2025.')">
+                        SBI PO 2025 Prelims Answer Key
+                        <span class="answer-date">Out Now</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" target="_blank"
+                        onclick="showAnswerKey('UPPSC RO/ARO Answer Key 2025', 'UPPSC RO/ARO Answer Key 2025 has been released. Download now.')">
+                        UPPSC RO/ARO Answer Key 2025
+                        <span class="answer-date">Out Now</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <h2 class="section-title" id="online-forms-section">Top Online Form</h2>
+        <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+            <ul style="columns: 2; list-style: none; padding: 0;">
+                <li style="margin-bottom: 10px;"><i class="fas fa-angle-right text-red"></i> <a href="#"
+                        target="_blank">Bihar Police CSBC Driver Constable Online Form 2025 (4361 Posts)</a></li>
+                <li style="margin-bottom: 10px;"><i class="fas fa-angle-right text-red"></i> <a href="#"
+                        target="_blank">Railway RRC SWR Apprentice Online Form 2025</a></li>
+                <li style="margin-bottom: 10px;"><i class="fas fa-angle-right text-red"></i> <a href="#"
+                        target="_blank">WBSSC Assistant Teacher Online Form 2025 (35,726 Posts) - Extend</a></li>
+                <li style="margin-bottom: 10px;"><i class="fas fa-angle-right text-red"></i> <a href="#"
+                        target="_blank">UPPSC Assistant Teacher TGT Online Form 2025 (7466 Posts)</a></li>
+                <li style="margin-bottom: 10px;"><i class="fas fa-angle-right text-red"></i> <a href="#"
+                        target="_blank">SIDBI Bank Grade A & B Online Form 2025</a></li>
+                <li style="margin-bottom: 10px;"><i class="fas fa-angle-right text-red"></i> <a href="#"
+                        target="_blank">IB ACIO Grade-II Executive Online Form 2025 (3777 Posts)</a></li>
+                <li style="margin-bottom: 10px;"><i class="fas fa-angle-right text-red"></i> <a href="#"
+                        target="_blank">Railway ICF Trade Apprentice Online Form 2025 (1010 Posts)</a></li>
+                <li style="margin-bottom: 10px;"><i class="fas fa-angle-right text-red"></i> <a href="#"
+                        target="_blank">AIIMS CRE Group B & C Various Post Online Form 2025</a></li>
+                <li style="margin-bottom: 10px;"><i class="fas fa-angle-right text-red"></i> <a href="#"
+                        target="_blank">Bihar BSEB Sakshamta Pariksha Phase 41th & 51th Online Form 2025</a></li>
+                <li style="margin-bottom: 10px;"><i class="fas fa-angle-right text-red"></i> <a href="#"
+                        target="_blank">SSC MTS / Havaldar Online Form 2025</a></li>
+            </ul>
+        </div>
+
+        <div
+            style="background: var(--primary-red); color: white; padding: 20px; border-radius: 8px; text-align: center; margin: 30px 0;">
+            <h3 style="margin: 0;">KS Computer Cafe provides all Latest Sarkari Result, Board Result, Sarkari Naukri
+                Notifications, Sarkari Job and Government Jobs.</h3>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">KS Computer Cafe</div>
+        <div class="footer-links">
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+        <div class="contact-info">
+            <p><i class="fab fa-map-marker-alt"></i> <a href="https://maps.app.goo.gl/sGkxsR2ArPTK4kTJA"
+                    style="color: white;">Keran Road, Near Char Khamba Chwok Malout, 152107, PB</a></p>
+            <p><i class="fas fa-phone-alt"></i> <a href="tel:+919814112075" style="color: white;">+91 98141-12075</a> |
+                <i class="fab fa-whatsapp"></i> <a href="https://wa.me/919814112075" style="color: white;"
+                    target="_blank">WhatsApp</a>
+            </p>
+            <p><i class="fas fa-envelope"></i> <a href="mailto:karancomputer333@gmail.com"
+                    style="color: white;">karancomputer333@gmail.com</a></p>
+        </div>
+        <p class="copyright">© 2025 KS Computer Cafe. All Rights Reserved.</p>
+    </footer>
+    </div>
+
+    <script>
+        // Function to show job details
+        function showJobDetails(id, event) {
+            event.preventDefault();
+            document.getElementById(id).style.display = 'block';
+            // Scroll to show details
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Function to hide job details
+        function hideJobDetails(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        // Function to show admit card details
+        function showAdmitCard(title, content, url) {
+            if (url && url !== '#') {
+                window.open(url, '_blank');
+            } else {
+                alert(title + "\n\n" + content);
+            }
+        }
+
+        // Function to show result details
+        function showResult(title, content) {
+            alert(title + "\n\n" + content + "\n\nClick OK to check result");
+        }
+
+        // Function to show answer key details
+        function showAnswerKey(title, content, url) {
+            if (url && url !== '#') {
+                window.open(url, '_blank');
+            } else {
+                alert(title + "\n\n" + content);
+            }
+        }
+    </script>
+</body>
+
+</html>
